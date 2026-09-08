@@ -154,7 +154,7 @@
     .profile-copy strong { display: block; color: var(--ink); font-size: 10px; }
     .profile-copy span { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; }
     .sidebar { position: fixed; z-index: 40; inset: 0 auto 0 0; width: var(--sidebar); display: flex; flex-direction: column; padding: 18px 14px 14px; color: #fff; background: var(--navy); }
-    .sidebar .login-brand { padding: 2px 7px 20px; margin-bottom: 6px; border-bottom: 1px solid rgba(225,118,66,.28); }
+    .sidebar .login-brand { padding: 2px 7px 20px; }
     .member-card { margin: 4px 3px 19px; padding: 13px; border: 1px solid rgba(255,255,255,.12); border-radius: 13px; background: rgba(255,255,255,.07); }
     .member-card small { display: block; color: rgba(255,255,255,.58); font-size: 9px; text-transform: uppercase; letter-spacing: .5px; }
     .member-card strong { display: block; margin: 4px 0; color: #fff; font-size: 13px; }
@@ -2100,7 +2100,7 @@ body:has(.login-shell:not(.is-hidden)) .va-orb { display: none !important; }
 
 
 /* ===== header: one surface with the sidebar, not a white strip ===== */
-.portal-header{background:var(--navy)!important;border-bottom:2px solid rgba(225,118,66,.4)!important}
+.portal-header{background:var(--navy)!important;border-bottom:1px solid rgba(255,255,255,.10)!important}
 .portal-header .header-title span,
 .portal-header #headerTitle{color:#fff}
 .portal-header .icon-btn{color:rgba(255,255,255,.82);border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.06)}
@@ -2671,7 +2671,7 @@ body.dark{
 }
 body.dark .portal-header,body.dark .sidebar{background:#091827!important}
 .sidebar,.portal-header{background:linear-gradient(rgba(19,43,73,.55),rgba(19,43,73,.72)),url('claimity-civic-backdrop.png') center/cover fixed,var(--navy)!important}
-.sidebar{box-shadow:10px 0 28px -18px rgba(11,30,54,.45)!important;border-right:2px solid rgba(225,118,66,.4)!important}
+.sidebar{box-shadow:10px 0 28px -18px rgba(11,30,54,.45)!important}
 .sidebar::after{content:"";position:absolute;inset:0;
   pointer-events:none;z-index:-1;opacity:.09;
   background:linear-gradient(rgba(19,43,73,.35),rgba(19,43,73,.6)),url("claimity-civic-backdrop.png") center/cover;
@@ -7409,7 +7409,7 @@ window.ccAddTranslations({
     const s=state(),m=window.ccMember(),c=window.ccCurrentCase;
     return ['CLAIMITY SYNTHETIC PRIORITY REQUEST','Nothing submitted. No medical or payment guarantee.', 'Member: '+m.name,'Reference: '+c.id,'UAN: **** **** '+m.uan.slice(-4),'Route: '+label(s.route),'Existing blocker: '+m.next,'Next responsible team: '+c.owner,'Proposed demo follow-up: '+new Date(s.due).toLocaleString(),'Demo deadline passed: '+s.overdue,...(s.route==='medical'?findings().map(f=>f.title+': '+f.text):['Review the existing claim and applicable purpose before any new filing.']), 'No official evidence requirement is waived. No medical diagnosis, document authenticity or EPFO eligibility is certified.'].join('\n');
   }
-  function buttons(){return '<div class="priority-options" role="group" aria-label="'+t('Choose a route','रास्ता चुनें')+'">'+Object.keys(routeNames).map(key=>'<button type="button" data-pr-route="'+key+'" aria-pressed="'+(state().route===key)+'"><b>'+label(key)+'</b><small>'+({medical:t('Reviewed as soon as possible, no fixed day count promised','जल्द से जल्द समीक्षा, कोई निश्चित दिन का वादा नहीं'),normal:t('Proposed follow-up window: 10–15 days','प्रस्तावित फ़ॉलो-अप अवधि: 10–15 दिन')}[key])+'</small></button>').join('')+'</div>';}
+  function buttons(){return '<div class="priority-options" role="group" aria-label="'+t('Choose a route','रास्ता चुनें')+'">'+Object.keys(routeNames).map(key=>'<button type="button" data-pr-route="'+key+'" aria-pressed="'+(state().route===key)+'"><b>'+label(key)+'</b><small>'+({medical:t('Reviewed on priority','प्राथमिकता से समीक्षा'),normal:t('Standard review, the usual process','मानक समीक्षा, सामान्य प्रक्रिया')}[key])+'</small></button>').join('')+'</div>';}
   function routeBody(scan){
     const s=state(),m=window.ccMember(),c=window.ccCurrentCase;
     let h='<p class="priority-announcement">'+e(m.name)+' · '+e(c.id)+'</p><p>'+e(window.ccTranslate(m.next))+'</p>';
