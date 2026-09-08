@@ -154,7 +154,7 @@
     .profile-copy strong { display: block; color: var(--ink); font-size: 10px; }
     .profile-copy span { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; }
     .sidebar { position: fixed; z-index: 40; inset: 0 auto 0 0; width: var(--sidebar); display: flex; flex-direction: column; padding: 18px 14px 14px; color: #fff; background: var(--navy); }
-    .sidebar .login-brand { padding: 2px 7px 20px; }
+    .sidebar .login-brand { padding: 2px 7px 20px; margin-bottom: 6px; border-bottom: 1px solid rgba(225,118,66,.28); }
     .member-card { margin: 4px 3px 19px; padding: 13px; border: 1px solid rgba(255,255,255,.12); border-radius: 13px; background: rgba(255,255,255,.07); }
     .member-card small { display: block; color: rgba(255,255,255,.58); font-size: 9px; text-transform: uppercase; letter-spacing: .5px; }
     .member-card strong { display: block; margin: 4px 0; color: #fff; font-size: 13px; }
@@ -2100,7 +2100,7 @@ body:has(.login-shell:not(.is-hidden)) .va-orb { display: none !important; }
 
 
 /* ===== header: one surface with the sidebar, not a white strip ===== */
-.portal-header{background:var(--navy)!important;border-bottom:1px solid rgba(255,255,255,.10)!important}
+.portal-header{background:var(--navy)!important;border-bottom:2px solid rgba(225,118,66,.4)!important}
 .portal-header .header-title span,
 .portal-header #headerTitle{color:#fff}
 .portal-header .icon-btn{color:rgba(255,255,255,.82);border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.06)}
@@ -2671,7 +2671,7 @@ body.dark{
 }
 body.dark .portal-header,body.dark .sidebar{background:#091827!important}
 .sidebar,.portal-header{background:linear-gradient(rgba(19,43,73,.55),rgba(19,43,73,.72)),url('claimity-civic-backdrop.png') center/cover fixed,var(--navy)!important}
-.sidebar{box-shadow:10px 0 28px -18px rgba(11,30,54,.45)!important}
+.sidebar{box-shadow:10px 0 28px -18px rgba(11,30,54,.45)!important;border-right:2px solid rgba(225,118,66,.4)!important}
 .sidebar::after{content:"";position:absolute;inset:0;
   pointer-events:none;z-index:-1;opacity:.09;
   background:linear-gradient(rgba(19,43,73,.35),rgba(19,43,73,.6)),url("claimity-civic-backdrop.png") center/cover;
