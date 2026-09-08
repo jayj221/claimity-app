@@ -4008,7 +4008,7 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
 (function () {
   'use strict';
   const members = {
-    missing: {name:'Aditi Sharma', initials:'AS', uan:'1002 8847 0400', dob:'14/03/1994', joined:'03 Jun 2019', employer:'ACME Textiles Pvt Ltd', establishment:'MH/BAN/0043217', memberId:'MHBAN***4500012', bank:'3391', ifsc:'SHBK0001234', aadhaar:'4471', pan:'ABCD*****F', phone:'0400', father:'RAJESH SHARMA', fatherProof:'RAJESH KUMAR SHARMA', bankName:'ADITI R SHARMA', exit:'Not applicable, employed', balance:486320, ee:204254, er:204254, pension:77812, contribution:4525, pensionCredit:1842, interest:34180, nominees:[['Rajesh Kumar Sharma','Father',60],['Meena Sharma','Mother',40]], scanSummary:'2 record differences to review', scanNote:'Your bank name and father’s name differ across the sample records. These are separate from the missing claim receipt.', next:'Ask the EPFO claim desk to confirm receipt.', claimDate:'2026-08-29', grievance:'GRV-4471-B'},
+    missing: {name:'Aditi Sharma', initials:'AS', uan:'1002 8847 0400', dob:'14/03/1994', joined:'03 Jun 2019', employer:'ACME Textiles Pvt Ltd', establishment:'MH/BAN/0043217', memberId:'MHBAN***4500012', bank:'3391', ifsc:'SHBK0001234', aadhaar:'4471', pan:'ABCD*****F', phone:'0400', father:'RAJESH SHARMA', fatherProof:'RAJESH KUMAR SHARMA', bankName:'ADITI SHARMA', exit:'Not applicable, employed', balance:486320, ee:204254, er:204254, pension:77812, contribution:4525, pensionCredit:1842, interest:34180, nominees:[['Rajesh Kumar Sharma','Father',60],['Meena Sharma','Mother',40]], scanSummary:'1 record difference to review', scanNote:'Your father’s name differs across the sample records. This is separate from the missing claim receipt.', next:'Ask the EPFO claim desk to confirm receipt.', claimDate:'2026-08-29', grievance:'GRV-4471-B'},
     blocked: {name:'Ramesh Kumar', initials:'RK', uan:'1003 7712 2816', dob:'22/11/1987', joined:'05 Apr 2016', employer:'StarBridge technologies', establishment:'PB/CHD/0062104', memberId:'PBCHD***6200018', bank:'6628', ifsc:'SHBK0002456', aadhaar:'5826', pan:'EFGH*****K', phone:'2816', father:'SURESH KUMAR', fatherProof:'SURESH KUMAR', bankName:'RAMESH KUMAR', exit:'Missing from service record', balance:624800, ee:268000, er:256800, pension:100000, contribution:4200, pensionCredit:1750, interest:28400, nominees:[['Sunita Kumar','Spouse',100]], scanSummary:'Date of exit needs confirmation', scanNote:'The sample identity and bank records agree. The missing date of exit is the first blocker; the older KYC remark is not another correction task.', next:'Request the exit-date correction from StarBridge technologies.', claimDate:'2026-08-08', grievance:'GRV-5826-R'},
     paid: {name:'Meera Nair', initials:'MN', uan:'1004 6631 7952', dob:'09/08/1990', joined:'12 Jul 2018', employer:'Lotus Learning Services', establishment:'DL/CPM/0074102', memberId:'DLCPM***7400026', bank:'9054', ifsc:'SHBK0003678', aadhaar:'7139', pan:'JKLM*****N', phone:'7952', father:'RAGHAVAN NAIR', fatherProof:'RAGHAVAN NAIR', bankName:'MEERA NAIR', exit:'Not applicable, employed', balance:358640, ee:155000, er:145000, pension:58640, contribution:3600, pensionCredit:1500, interest:22100, nominees:[['Arjun Nair','Spouse',100]], scanSummary:'No differences in the checked records', scanNote:'The checked sample records agree. This does not confirm bank credit: the approved ₹24,890 still needs payment reconciliation.', next:'Trace the ₹24,890 payment to Sahaj Bank ending 9054.', claimDate:'2026-08-11', grievance:'GRV-7139-M'}
   };
@@ -4021,7 +4021,7 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
     const remaining=(m.bankName!==m.name.toUpperCase()?1:0)+(m.father!==m.fatherProof?1:0);
     if(m===members.missing){
       m.scanSummary=remaining?remaining+' record difference'+(remaining===1?'':'s')+' to review':'Checked records agree';
-      m.scanNote=remaining===2?'Your bank name and father’s name differ across the sample records. These are separate from the missing claim receipt.':remaining===1?(m.bankName!==m.name.toUpperCase()?'The father’s-name correction is complete. Your bank-name difference still needs review.':'The bank-name correction is complete. Your father’s-name difference still needs review.'):'Both sample record corrections are complete. Run Claim-Scan again to verify the updated score.';
+      m.scanNote=remaining===2?'Your bank name and father’s name differ across the sample records. These are separate from the missing claim receipt.':remaining===1?(m.bankName!==m.name.toUpperCase()?'Your bank name differs across the sample records. This is separate from the missing claim receipt.':'Your father’s name differs across the sample records. This is separate from the missing claim receipt.'):'Both sample record corrections are complete. Run Claim-Scan again to verify the updated score.';
     }
   }
   refreshScanCopy(members.missing);
@@ -7351,7 +7351,7 @@ window.ccAddTranslations({
   const money=n=>'₹'+Number(n).toLocaleString('en-IN');
   const routeNames={medical:['Medical priority','चिकित्सा प्राथमिकता'],normal:['Normal route','सामान्य रास्ता']};
   const label=key=>t(...routeNames[key]);
-  function state(){return states[window.ccWho]||(states[window.ccWho]={route:'normal',context:'admission',amount:25000,checked:false,prepared:false,overdue:false,relation:'self',docs:{admission:false,prescription:false}});}
+  function state(){return states[window.ccWho]||(states[window.ccWho]={route:'normal',context:'admission',amount:25000,checked:false,prepared:false,overdue:false,relation:'self',docs:{admission:false,prescription:false},scanning:false,scanStart:0});}
   function target(){return {medical:1,normal:10}[state().route];}
   function icon(kind){return '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/>'+ (kind==='ok'?'<path d="m7 12 3 3 7-7"/>':'<path d="M12 7v6m0 3v1"/>')+'</svg>';}
   function relationOptions(m){return [{value:'self',label:t('Self — '+m.name,'स्वयं — '+m.name)}].concat(m.nominees.map((n,i)=>({value:'nominee'+i,label:n[0]+' — '+t(n[1],n[1])})));}
@@ -7360,7 +7360,7 @@ window.ccAddTranslations({
   function medicalScore(){
     const s=state(),m=window.ccMember(),limit=Math.min(m.ee,50000);
     const goodAmount=Number.isFinite(s.amount)&&s.amount>0&&s.amount<=limit;
-    const match=m.bankName===m.name.toUpperCase();
+    const match=true;
     const ready=docsReady()&&goodAmount;
     let score=0;
     if(docsReady())score+=55;
@@ -7390,8 +7390,9 @@ window.ccAddTranslations({
     let h='<h3>'+t('Medical priority: two required documents','चिकित्सा प्राथमिकता: दो अनिवार्य दस्तावेज़')+'</h3><p>'+t('Synthetic records only. Do not upload real health or identity documents. AI reading and DigiLocker verification are simulated; the field comparison runs locally.','केवल काल्पनिक रिकॉर्ड। वास्तविक स्वास्थ्य या पहचान दस्तावेज़ अपलोड न करें। AI रीडिंग और DigiLocker सत्यापन सिमुलेटेड हैं; विवरणों की तुलना यहीं होती है।')+'</p>';
     h+='<div class="priority-fields"><div class="up-grid">'+slot('admission','Hospital admission slip','अस्पताल भर्ती पर्ची','Required','अनिवार्य')+slot('prescription','Doctor’s prescription','डॉक्टर की पर्ची','Required','अनिवार्य')+'</div>';
     h+='<label for="priorityRelation">'+t('Relationship to patient','मरीज़ से संबंध')+'<select id="priorityRelation" data-pr-field="relation">'+relationOptions(m).map(o=>'<option value="'+o.value+'"'+(s.relation===o.value?' selected':'')+'>'+o.label+'</option>').join('')+'</select><small>'+t('Only relations already on your nominee record can be selected. Nobody outside your record can be claimed.','केवल आपके नामांकित रिकॉर्ड में मौजूद संबंध ही चुने जा सकते हैं। रिकॉर्ड से बाहर किसी का दावा नहीं किया जा सकता।')+'</small></label></div>';
-    h+='<div class="priority-actions"><button type="button" class="btn btn-primary" data-pr-action="check"'+(docsReady()?'':' disabled')+'>'+t('Run the check','जाँच करें')+'</button></div>';
-    if(!docsReady())h+='<p class="priority-error">'+t('Upload both the admission slip and the prescription to run the medical check.','चिकित्सा जाँच चलाने के लिए भर्ती पर्ची और डॉक्टर की पर्ची, दोनों अपलोड करें।')+' <button type="button" class="link-btn" data-pr-action="sample-docs">'+t('Use sample documents','नमूना दस्तावेज़ इस्तेमाल करें')+'</button></p>';
+    if(s.scanning)h+='<div class="pf-top" style="margin-top:16px"><div style="display:flex;gap:10px;align-items:center"><span class="pf-timer is-run" id="medTimer">0.00s</span><button class="btn btn-primary" type="button" disabled>'+t('Scanning…','जाँच हो रही है…')+'</button></div></div>';
+    else h+='<div class="priority-actions"><button type="button" class="btn btn-primary" data-pr-action="check"'+(docsReady()?'':' disabled')+'>'+t('Run the check','जाँच करें')+'</button></div>';
+    if(!docsReady()&&!s.scanning)h+='<p class="priority-error">'+t('Upload both the admission slip and the prescription to run the medical check.','चिकित्सा जाँच चलाने के लिए भर्ती पर्ची और डॉक्टर की पर्ची, दोनों अपलोड करें।')+' <button type="button" class="link-btn" data-pr-action="sample-docs">'+t('Use sample documents','नमूना दस्तावेज़ इस्तेमाल करें')+'</button></p>';
     if(s.checked&&docsReady()){
       const v=medicalScore();
       h+='<div class="priority-result" tabindex="-1" role="status"><div class="priority-verdict"><span class="status status-'+(v.band.key==='clean'?'success':v.band.key==='conditional'?'warning':'danger')+'">'+v.band.label+'</span><b>'+v.score+' / 100</b></div><ul class="priority-checks">'+findings().map(f=>'<li class="'+f.kind+'">'+icon(f.kind)+'<div><b>'+f.title+'</b><p>'+e(f.text)+'</p></div></li>').join('')+'</ul>';
@@ -7450,7 +7451,19 @@ window.ccAddTranslations({
       if(action==='scan'){window.setViewPublic('check');render();document.getElementById('ccCheckBody').hidden&&document.getElementById('ccCheckBar').click();(s.route==='medical'?document.getElementById('ccMedicalCheck'):document.getElementById('upGrid'))?.scrollIntoView({block:'center',behavior:'auto'});}
       if(action==='records'){window.setViewPublic('check');if(document.getElementById('ccCheckBody').hidden)document.getElementById('ccCheckBar').click();document.getElementById('pfRun').focus();document.getElementById('pfRun').scrollIntoView({block:'center',behavior:'auto'});}
       if(action==='sample-docs'){s.docs.admission=true;s.docs.prescription=true;render();focus('[data-pr-action="check"]');}
-      if(action==='check'){s.checked=true;s.prepared=false;render();focus('.priority-result');}
+      if(action==='check'){
+        s.scanning=true;s.scanStart=performance.now();s.checked=false;s.prepared=false;render();
+        const iv=setInterval(function(){
+          const cur=state();if(!cur.scanning){clearInterval(iv);return;}
+          const el=document.getElementById('medTimer');
+          if(el)el.textContent=((performance.now()-cur.scanStart)/1000).toFixed(2)+'s';
+        },80);
+        setTimeout(function(){
+          clearInterval(iv);
+          const cur=state();cur.scanning=false;cur.checked=true;
+          render();focus('.priority-result');
+        },1400);
+      }
       if(action==='prepare'){s.prepared=true;s.overdue=false;s.due=Date.now()+target()*86400000;render();focus('.priority-request');}
       if(action==='overdue'){s.overdue=true;render();focus('.priority-request');}
       if(action==='recovery')window.setViewPublic('recovery');
