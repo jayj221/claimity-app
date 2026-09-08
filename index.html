@@ -2621,6 +2621,7 @@ body.dark .status-danger{color:#f2a49c!important;background:#3b2229!important}
 .priority-surface details{margin-top:14px}.priority-surface summary{cursor:pointer;font-size:14px;color:var(--teal-strong)}
 .priority-surface a{color:var(--teal-strong);text-underline-offset:3px}.priority-surface button:focus-visible,.priority-surface a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 .priority-error{color:var(--danger,#b23a2b)!important}.priority-announcement{color:var(--ink)!important;font-weight:600}
+.link-btn{border:0;padding:0;background:none;color:var(--teal-strong);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}
 .priority-fields>.up-grid{grid-column:1/-1;margin:0}
 .priority-verdict{display:flex;align-items:center;gap:12px;margin-bottom:6px}.priority-verdict b{font-size:20px;color:var(--ink)}
 .priority-conditional{margin:14px 0;padding:14px 16px;border-radius:12px;border:1px solid var(--warning,#e9bb79);background:var(--warning-soft,#fbf1e2)}
@@ -7390,7 +7391,7 @@ window.ccAddTranslations({
       h+='<label for="priorityRelation">'+t('Relationship to patient','मरीज़ से संबंध')+'<select id="priorityRelation" data-pr-field="relation">'+relationOptions(m).map(o=>'<option value="'+o.value+'"'+(s.relation===o.value?' selected':'')+'>'+o.label+'</option>').join('')+'</select><small>'+t('Only relations already on your nominee record can be selected. Nobody outside your record can be claimed.','केवल आपके नामांकित रिकॉर्ड में मौजूद संबंध ही चुने जा सकते हैं। रिकॉर्ड से बाहर किसी का दावा नहीं किया जा सकता।')+'</small></label>';
       h+='<label for="priorityAmount">'+t('Sample requested amount (₹)','नमूना माँगी गई राशि (₹)')+'<input id="priorityAmount" data-pr-field="amount" type="number" min="1" step="1" value="'+s.amount+'" inputmode="numeric"><small>'+t('Illustrative demo limit: ','काल्पनिक डेमो सीमा: ')+money(Math.min(m.ee,50000))+t('. Not an official entitlement calculation.','। यह आधिकारिक पात्रता गणना नहीं है।')+'</small></label></div>';
       h+='<div class="priority-actions"><button type="button" class="btn btn-primary" data-pr-action="check"'+(docsReady()?'':' disabled')+'>'+t('Check medical sample','चिकित्सा नमूना जाँचें')+'</button><button type="button" class="btn btn-secondary" data-pr-action="records">'+t('Open full record comparison','पूरे रिकॉर्ड की तुलना खोलें')+'</button></div>';
-      if(!docsReady())h+='<p class="priority-error">'+t('Upload both the admission slip and the prescription to run the medical check.','चिकित्सा जाँच चलाने के लिए भर्ती पर्ची और डॉक्टर की पर्ची, दोनों अपलोड करें।')+'</p>';
+      if(!docsReady())h+='<p class="priority-error">'+t('Upload both the admission slip and the prescription to run the medical check.','चिकित्सा जाँच चलाने के लिए भर्ती पर्ची और डॉक्टर की पर्ची, दोनों अपलोड करें।')+' <button type="button" class="link-btn" data-pr-action="sample-docs">'+t('Use sample documents','नमूना दस्तावेज़ इस्तेमाल करें')+'</button></p>';
       if(s.checked&&docsReady()){
         const v=medicalScore();
         h+='<div class="priority-result" tabindex="-1" role="status"><div class="priority-verdict"><span class="status status-'+(v.band.key==='clean'?'success':v.band.key==='conditional'?'warning':'danger')+'">'+v.band.label+'</span><b>'+v.score+' / 100</b></div><ul class="priority-checks">'+findings().map(f=>'<li class="'+f.kind+'">'+icon(f.kind)+'<div><b>'+f.title+'</b><p>'+e(f.text)+'</p></div></li>').join('')+'</ul>';
@@ -7429,6 +7430,7 @@ window.ccAddTranslations({
         const action=button.dataset.prAction,s=state();
         if(action==='scan'){window.setViewPublic('check');render();focus('[data-pr-route="'+s.route+'"]');}
         if(action==='records'){window.setViewPublic('check');if(document.getElementById('ccCheckBody').hidden)document.getElementById('ccCheckBar').click();document.getElementById('pfRun').focus();document.getElementById('pfRun').scrollIntoView({block:'center',behavior:'auto'});}
+        if(action==='sample-docs'){s.docs.admission=true;s.docs.prescription=true;render();focus('[data-pr-action="check"]');}
         if(action==='check'){s.checked=true;s.prepared=false;render();focus('.priority-result');}
         if(action==='prepare'){s.prepared=true;s.overdue=false;s.due=Date.now()+target()*86400000;render();focus('.priority-request');}
         if(action==='overdue'){s.overdue=true;render();focus('.priority-request');}
