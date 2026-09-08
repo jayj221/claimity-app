@@ -4002,14 +4002,11 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
     blocked: {name:'Ramesh Kumar', initials:'RK', uan:'1003 7712 2816', dob:'22/11/1987', joined:'05 Apr 2016', employer:'StarBridge technologies', establishment:'PB/CHD/0062104', memberId:'PBCHD***6200018', bank:'6628', ifsc:'SHBK0002456', aadhaar:'5826', pan:'EFGH*****K', phone:'2816', father:'SURESH KUMAR', fatherProof:'SURESH KUMAR', bankName:'RAMESH KUMAR', exit:'Missing from service record', balance:624800, ee:268000, er:256800, pension:100000, contribution:4200, pensionCredit:1750, interest:28400, nominees:[['Sunita Kumar','Spouse',100]], scanSummary:'Date of exit needs confirmation', scanNote:'The sample identity and bank records agree. The missing date of exit is the first blocker; the older KYC remark is not another correction task.', next:'Request the exit-date correction from StarBridge technologies.', claimDate:'2026-08-08', grievance:'GRV-5826-R'},
     paid: {name:'Meera Nair', initials:'MN', uan:'1004 6631 7952', dob:'09/08/1990', joined:'12 Jul 2018', employer:'Lotus Learning Services', establishment:'DL/CPM/0074102', memberId:'DLCPM***7400026', bank:'9054', ifsc:'SHBK0003678', aadhaar:'7139', pan:'JKLM*****N', phone:'7952', father:'RAGHAVAN NAIR', fatherProof:'RAGHAVAN NAIR', bankName:'MEERA NAIR', exit:'Not applicable, employed', balance:358640, ee:155000, er:145000, pension:58640, contribution:3600, pensionCredit:1500, interest:22100, nominees:[['Arjun Nair','Spouse',100]], scanSummary:'No differences in the checked records', scanNote:'The checked sample records agree. This does not confirm bank credit: the approved ₹24,890 still needs payment reconciliation.', next:'Trace the ₹24,890 payment to Sahaj Bank ending 9054.', claimDate:'2026-08-11', grievance:'GRV-7139-M'}
   };
+  // ponytail: correction state is in-memory only (resets on reload) so a fresh
+  // take always starts from the uncorrected scan. It's intentionally not
+  // persisted to sessionStorage — a prior session's fix must not survive a
+  // reload here, unlike the sign-in session itself.
   const correctionState = {missing:{bank:false,father:false},blocked:{exit:false},paid:{}};
-  try {
-    const savedCorrections=JSON.parse(sessionStorage.getItem('claimity.corrections.v1')||'{}');
-    Object.keys(correctionState).forEach(key=>Object.assign(correctionState[key],savedCorrections[key]||{}));
-  } catch (_) {}
-  if(correctionState.missing.bank)members.missing.bankName=members.missing.name.toUpperCase();
-  if(correctionState.missing.father)members.missing.fatherProof=members.missing.father;
-  if(correctionState.blocked.exit){members.blocked.exit='30 Jun 2026 (demo verified)';members.blocked.exitVerified=true;}
   function refreshScanCopy(m){
     const remaining=(m.bankName!==m.name.toUpperCase()?1:0)+(m.father!==m.fatherProof?1:0);
     if(m===members.missing){
@@ -4024,7 +4021,6 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
     if(route==='father'){m.fatherProof=m.father;correctionState[key].father=true;}
     if(route==='exit'){m.exit='30 Jun 2026 (demo verified)';m.exitVerified=true;correctionState[key].exit=true;}
     refreshScanCopy(m);
-    try{sessionStorage.setItem('claimity.corrections.v1',JSON.stringify(correctionState));}catch(_){}
     if(window.ccRenderMember&&window.ccCurrentCase)window.ccRenderMember(window.ccCurrentCase);
     document.dispatchEvent(new CustomEvent('cc:correctionapplied',{detail:{route:route,member:key}}));
   };
