@@ -2720,8 +2720,12 @@ body.dark .portal-header,body.dark .sidebar{background:#091827!important}
 @media(max-width:760px){
   .login-panel{background:linear-gradient(180deg,#fff9f2 0,#fffdfa 34%)!important}
   .login-card .mobile-brand{padding-bottom:13px;border-bottom:3px solid transparent;border-image:linear-gradient(90deg,#e4773f 0 33%,#f0e8dc 33% 66%,#438168 66%) 1}
-  .lp-login-btn{top:10px;right:10px;padding:0 14px;min-height:36px;font-size:12.5px}
-  #lpNotices .nb-h{padding-right:130px}
+  .lp-login-btn{top:8px;right:8px;padding:0 12px;min-height:32px;font-size:11.5px;gap:4px}
+  .lp-login-btn svg{width:14px;height:14px}
+  #lpNotices .nb-h{padding-right:120px!important;flex-wrap:wrap}
+}
+@media(max-width:420px){
+  .lp-login-btn{top:6px;right:6px;padding:0 10px;min-height:28px;font-size:10.5px}
 }
 /* Member Home is a launchpad, not a duplicate claim dashboard. */
 #viewHome>#crBox,#viewHome>.attention,#viewHome>.dashboard-grid{display:none!important}
