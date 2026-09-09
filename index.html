@@ -4472,7 +4472,7 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
   /* ============ LANGUAGES ============
      6 languages covering ~70% of PF claimants.
      NOTE: strings need native-speaker review before final submission. */
-  var LANGS=[{code:'en',label:'English',native:'English',speech:'en-IN'},{code:'hi',label:'Hindi',native:'हिन्दी',speech:'hi-IN'}];
+  var LANGS=[{code:'en',label:'English',native:'English',speech:'en-IN'},{code:'hi',label:'Hindi',native:'हिन्दी',speech:'hi-IN'},{code:'mr',label:'Marathi',native:'मराठी',speech:'mr-IN'},{code:'bn',label:'Bengali',native:'বাংলা',speech:'bn-IN'},{code:'ta',label:'Tamil',native:'தமிழ்',speech:'ta-IN'},{code:'te',label:'Telugu',native:'తెలుగు',speech:'te-IN'}];
 
   var T = {
     "Member Home":            {hi:"सदस्य होम", mr:"सदस्य होम", bn:"সদস্য হোম", ta:"உறுப்பினர் முகப்பு", te:"సభ్యుల హోమ్"},
@@ -6597,14 +6597,38 @@ function ccMark(segs){
     {k:"info", t:"Refiling is held for 72 hours",
      d:"A duplicate would have to be withdrawn before either claim could move."}
   ];
+  /* read state survives view changes, so a notice stays read once opened */
+  function readSet(){
+    try{ return new Set(JSON.parse(sessionStorage.getItem('cc-read-notices')||'[]')); }
+    catch(e){ return new Set(); }
+  }
+  function saveRead(set){
+    try{ sessionStorage.setItem('cc-read-notices', JSON.stringify(Array.from(set))); }catch(e){}
+  }
+  function currentNotices(){
+    return [{k:'info',t:window.ccMember().name+' \u00b7 '+window.ccCurrentCase.chainStatus,d:window.ccCurrentCase.summary},
+            {k:'info',t:'Next action',d:window.ccMember().next},
+            {k:'info',t:'Record check',d:window.ccMember().scanNote}];
+  }
+  function noticeKey(n){ return window.ccMember().name+'|'+n.t; }
+  function syncNotifDot(){
+    var dot=document.getElementById('notifDot'); if(!dot) return;
+    var read=readSet();
+    var unread=currentNotices().filter(function(n){return !read.has(noticeKey(n));}).length;
+    dot.classList.toggle('is-read', unread===0);
+  }
+  window.ccSyncNotifDot=syncNotifDot;
   function renderNotices(){
     var panel = document.getElementById("notifPanel");
     if (!panel) return;
+    var read = readSet();
     panel.innerHTML =
       '<div class="notif-h"><b>Notices</b><button type="button" id="notifClear">Mark all read</button></div>' +
-      [{k:'info',t:window.ccMember().name+' · '+window.ccCurrentCase.chainStatus,d:window.ccCurrentCase.summary},{k:'info',t:'Next action',d:window.ccMember().next},{k:'info',t:'Record check',d:window.ccMember().scanNote}].map(function(n){
-        return '<button type="button" class="notif-item ' + n.k + '" data-notice-go="'+(n.t==='Record check'?'check':n.t==='Next action'?'recovery':'detail')+'"><i></i><span><b>' + n.t + '</b><small>' + n.d + '</small></span></button>';
+      currentNotices().map(function(n){
+        var isRead = read.has(noticeKey(n));
+        return '<button type="button" class="notif-item ' + n.k + (isRead?' is-read':'') + '" data-notice-key="'+String(noticeKey(n)).replace(/"/g,'&quot;')+'" data-notice-go="'+(n.t==='Record check'?'check':n.t==='Next action'?'recovery':'detail')+'"><i></i><span><b>' + n.t + '</b><small>' + n.d + '</small></span></button>';
       }).join("");
+    syncNotifDot();
   }
   document.addEventListener("click", function(e){
     var btn = e.target.closest("#notificationButton");
@@ -6615,11 +6639,22 @@ function ccMark(segs){
       if (open) renderNotices();
       panel.hidden = !open;
       btn.setAttribute("aria-expanded", open ? "true" : "false");
-      var dot = document.getElementById("notifDot");
-      if (open && dot) dot.classList.add("is-read");
+      syncNotifDot();
       return;
     }
-    if (e.target.closest("#notifClear")){ panel.hidden = true; return; }
+    if (e.target.closest("#notifClear")){
+      var all = readSet();
+      currentNotices().forEach(function(n){ all.add(noticeKey(n)); });
+      saveRead(all); renderNotices();
+      return;
+    }
+    var item = e.target.closest(".notif-item");
+    if (item && item.dataset.noticeKey){
+      var set = readSet(); set.add(item.dataset.noticeKey); saveRead(set);
+      item.classList.add("is-read");
+      syncNotifDot();
+      // falls through: the existing data-notice-go handler still navigates
+    }
     if (!e.target.closest("#notifPanel")) panel.hidden = true;
   });
 
@@ -7678,6 +7713,45 @@ body.dark .diff-block{background:rgba(225,118,66,.10);border-color:rgba(225,118,
 .med-rs .med-head .rs-title{margin:0}
 .med-rs .rs-checks li small{line-height:1.6}
 @media(max-width:860px){.med-rs .rs-grid{grid-template-columns:1fr;gap:30px}}
+
+/* ---- sign-in panel: the switch button is part of the panel, not the viewport.
+   It was position:fixed, so it floated over the notices while they scrolled. */
+.login-panel{position:relative}
+.lp-switch{position:absolute;top:28px;right:34px;z-index:5}
+.lp-login-btn,.lp-back-btn{position:static;top:auto;right:auto}
+#lpNotices .nb-h{padding-right:210px}
+@media(max-width:900px){
+  .lp-switch{top:18px;right:18px}
+  #lpNotices .nb-h{padding-right:180px}
+}
+
+/* ---- Find it sits beside the search field, not inside it.
+   The pill border was on the row, which swallowed the button. */
+.cc-ask-row{border:0;background:transparent;padding:0;border-radius:0;gap:10px;align-items:center}
+.cc-ask-row #ccAskIn,
+.cc-ask-row #ccAskIn:focus,
+.cc-ask-row #ccAskIn:focus-visible{
+  border:1px solid var(--line-strong)!important;border-radius:24px!important;
+  background:var(--surface)!important;height:46px;padding:0 18px!important}
+.cc-ask-row #ccAskIn:focus,
+.cc-ask-row #ccAskIn:focus-visible{
+  border-color:var(--teal)!important;box-shadow:0 0 0 3px rgba(201,87,50,.16)!important}
+.cc-ask-row:focus-within{outline:0!important;box-shadow:none!important;border-color:transparent!important}
+.cc-ask-row #ccAskGo{border-radius:24px;height:46px;padding:0 22px;flex:none}
+
+/* ---- a read notice reads as read: no bullet, lighter, unbolded ---- */
+.notif-item b{font-weight:700;transition:color .18s ease,font-weight .18s ease}
+.notif-item i{transition:background-color .18s ease}
+.notif-item.is-read{opacity:.66}
+.notif-item.is-read i{background:transparent!important}
+.notif-item.is-read b{font-weight:600;color:var(--muted)}
+.notif-item.is-read small{opacity:.85}
+@media(prefers-reduced-motion:reduce){.notif-item b,.notif-item i{transition:none}}
+
+/* overflow:hidden on .nb made it the sticky container, so the bulletin
+   header scrolled away and left the log-in button stranded over the list */
+#lpNotices .nb{overflow:visible}
+#lpNotices .nb-h{background:var(--canvas)}
 </style>
 <script>
 /* Local receiving-system simulator. A response is not a verified correction.
