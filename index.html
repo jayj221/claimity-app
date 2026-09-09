@@ -2880,7 +2880,7 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
 
   <div class="portal" id="portal">
     <aside class="sidebar" id="sidebar">
-      <div class="login-brand"><span class="brand-mark"><img class="cc-mark" src="claimity-icon-transparent.png" alt="" aria-hidden="true" style="width:84%;height:84%;object-fit:contain;display:block"></span><span class="brand-text">Claimity<small>Employees Provident Fund Claim Resolution</small></span></div>
+      <button type="button" class="login-brand" data-go-home aria-label="Claimity home"><span class="brand-mark"><img class="cc-mark" src="claimity-icon-transparent.png" alt="" aria-hidden="true" style="width:84%;height:84%;object-fit:contain;display:block"></span><span class="brand-text">Claimity<small>Employees Provident Fund Claim Resolution</small></span></button>
       <div class="member-card"><small>Member</small><strong>Aditi Sharma</strong><span>UAN <span data-uan="1002 8847 0400"></span></span></div>
       <div class="nav-label">Member services</div>
       <nav class="side-nav" aria-label="Member services">
@@ -3466,11 +3466,28 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
     <button class="btn btn-primary" type="button" id="ccNewGrievance">Raise a grievance</button></div>
   <div class="pg-grid pg-2">
     <div class="gr" id="grList"></div>
-    <div class="pg-grid">
+    <div class="pg-grid gr-rail">
       <div class="pg-card">
         <div class="section-title"><div><h3>What we promise</h3></div></div>
-        <p style="color:var(--muted);font-size:13.5px;line-height:1.65;margin:0">
-          A complaint is not closed by changing a word. It closes when someone answers, or it goes higher because nobody did.</p>
+        <p class="gr-promise">A complaint is not closed by changing a word. It closes when someone answers, or it goes higher because nobody did.</p>
+        <ol class="gr-ladder">
+          <li><div><b>A named desk owns it</b><small>Not a queue. The person and the deadline are both on the record.</small></div></li>
+          <li><div><b>A missed deadline moves it up</b><small>If the answer does not arrive, the complaint escalates instead of closing.</small></div></li>
+          <li><div><b>It closes on a reply, not a status</b><small>Changing a word in the system is not an answer.</small></div></li>
+        </ol>
+      </div>
+      <div class="pg-card">
+        <div class="section-title"><div><h3>Your record</h3></div></div>
+        <dl class="gr-record">
+          <div><dt>Open now</dt><dd id="grOpenCount">&mdash;</dd></div>
+          <div><dt>Resolved</dt><dd id="grClosedCount">&mdash;</dd></div>
+          <div><dt>Time to resolve</dt><dd>2 and 6 days</dd></div>
+        </dl>
+      </div>
+      <div class="pg-card">
+        <div class="section-title"><div><h3>The official route</h3></div></div>
+        <p class="gr-promise">Claimity is an independent concept and does not file on your behalf. Complaints to EPFO are raised on EPFiGMS.</p>
+        <a class="gr-link" href="https://epfigms.gov.in/" target="_blank" rel="noopener noreferrer">Open EPFiGMS<svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"/><path d="M11 13l9 -9"/><path d="M15 4h5v5"/></svg></a>
       </div>
     </div>
   </div>
@@ -3986,7 +4003,7 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
   <path d="M3 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
   <path d="M19 7a2 2 0 1 0 0 -4a2 2 0 0 0 0 4" />
   <path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5" />
-</svg></i><div><strong>If it stops, we open a case</strong><span>With a named person, a deadline, your proof, and what happens if they miss it.</span></div></div><div class="scope-box"><strong>Independent concept</strong>This experience uses synthetic records and simulated service behaviour. It does not connect to EPFO, UMANG, banks, Aadhaar, UAN, OTP, payment, or any government system.</div></section></div>
+</svg></i><div><strong>If it stops, we open a case</strong><span>With a named person, a deadline, your proof, and what happens if they miss it.</span></div></div><div class="diff-block"><h3>What we do differently</h3><p>Most services tell you a claim was rejected. Claimity finds the reason before you file, and stays with you until it is fixed.</p><div class="proof-block is-diff"><i><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3"/><path d="M9 12l2 2l4 -4"/></svg></i><div><strong>Claim-Scan checks your records before you file</strong><span>It compares your EPFO, Aadhaar, PAN and bank records field by field and names the exact one that differs. The portal’s own check returns only pass or fail, which is why a rejection notice can never tell you which field broke it.</span></div></div><div class="proof-block is-diff"><i><svg class="icon-sm" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"/><path d="M13.5 6.5l4 4"/></svg></i><div><strong>You finish the correction here</strong><span>Every difference opens a correction desk with the form already filled from your records. Complete it, then re-run Claim-Scan and watch the finding clear.</span></div></div></div><div class="scope-box"><strong>Independent concept</strong>This experience uses synthetic records and simulated service behaviour. It does not connect to EPFO, UMANG, banks, Aadhaar, UAN, OTP, payment, or any government system.</div></section></div>
   <div class="toast" id="toast" role="status" aria-live="polite"><svg class="icon" aria-hidden="true" focusable="false"
   xmlns="http://www.w3.org/2000/svg"
 
@@ -4134,6 +4151,10 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
         '<div class="gr-meta">'+it.meta.map(([k,v])=>'<div><small>'+E(k)+'</small><b>'+E(v)+'</b></div>').join('')+'</div>'+
       '</details>'
     ).join('');
+    var o=items.filter(function(i){return i.status==='Open'}).length;
+    var oc=document.getElementById('grOpenCount'), cc=document.getElementById('grClosedCount');
+    if(oc) oc.textContent=o;
+    if(cc) cc.textContent=items.length-o;
   };
 
   window.ccRenderMember = function (c) {
@@ -5055,6 +5076,7 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
       <div class="va-say" id="vaSay">Ask about your claim and I will read the answer aloud in your chosen language.</div>
       <div class="va-qs" id="vaQs"></div>
     </div>
+    <div class="va-hint" id="vaHint">Tap a question, or use the mic to speak.</div>
     <div class="va-ft">
       <button class="va-mic" id="vaMic" aria-pressed="false" aria-label="Speak your question"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2m0 3a3 3 0 0 1 3 -3h0a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3z"/><path d="M5 10a7 7 0 0 0 14 0"/><path d="M8 21l8 0"/><path d="M12 17l0 4"/></svg></button>
       <input id="vaIn" type="text" autocomplete="off" placeholder="Type your question in your own words"><button class="va-go" id="vaGo" aria-label="Ask"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></svg></button>
@@ -5123,7 +5145,7 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
   if(!fab) return;
   var qs=document.getElementById("vaQs"), say=document.getElementById("vaSay"),
       wave=document.getElementById("vaWave"), mic=document.getElementById("vaMic"),
-      langLbl=document.getElementById("vaLang"), hint=document.getElementById("vaHint");
+      langLbl=document.getElementById("vaLang"), hint=document.getElementById("vaHint")||{};
 
   var SPEECH={en:"en-IN",hi:"hi-IN",mr:"mr-IN",bn:"bn-IN",ta:"ta-IN",te:"te-IN"};
   var NAMES={en:"English",hi:"हिन्दी",mr:"मराठी",bn:"বাংলা",ta:"தமிழ்",te:"తెలుగు"};
@@ -7395,12 +7417,49 @@ window.ccAddTranslations({
     if(!docsReady()&&!s.scanning)h+='<p class="priority-error">'+t('Upload both the admission slip and the prescription to run the medical check.','चिकित्सा जाँच चलाने के लिए भर्ती पर्ची और डॉक्टर की पर्ची, दोनों अपलोड करें।')+' <button type="button" class="link-btn" data-pr-action="sample-docs">'+t('Use sample documents','नमूना दस्तावेज़ इस्तेमाल करें')+'</button></p>';
     if(s.checked&&docsReady()){
       const v=medicalScore();
-      h+='<div class="priority-result" tabindex="-1" role="status"><div class="priority-verdict"><span class="status status-'+(v.band.key==='clean'?'success':v.band.key==='conditional'?'warning':'danger')+'">'+v.band.label+'</span><b>'+v.score+' / 100</b></div><ul class="priority-checks">'+findings().map(f=>'<li class="'+f.kind+'">'+icon(f.kind)+'<div><b>'+f.title+'</b><p>'+e(f.text)+'</p></div></li>').join('')+'</ul>';
+      const bandCls=v.band.key==='clean'?'is-green':v.band.key==='conditional'?'is-yellow':'';
+      h+='<div class="priority-result" tabindex="-1" role="status"><div class="rs med-rs"><div class="rs-grid"><div class="rs-dial">'
+        +'<svg class="rs-ring" viewBox="0 0 200 200" aria-hidden="true"><circle class="rs-track" cx="100" cy="100" r="86"/><circle class="rs-arc" id="medArc" cx="100" cy="100" r="86" style="stroke-dashoffset:'+(MED_C*(1-v.score/100))+';stroke:'+(v.band.key==='clean'?'var(--success)':v.band.key==='conditional'?'var(--warning)':'var(--teal)')+'"/></svg>'
+        +'<div class="rs-num"><span id="medScore">'+v.score+'</span><small>/ 100</small></div>'
+        +'<div class="rs-band '+bandCls+'">'+v.band.label+'</div></div><div class="rs-side">'
+        +'<span class="rs-ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>'+t('AI reads the documents','AI दस्तावेज़ पढ़ता है')+'</span>'
+        +'<h3 class="rs-title">'+t('Claim-Scan \u00b7 medical priority','Claim-Scan \u00b7 चिकित्सा प्राथमिकता')+'</h3>'
+        +'<p class="rs-sub">'+t('Two medical documents, the claimed relationship and your identity, read and cross-checked. The score describes the paperwork, not you.','दो चिकित्सा दस्तावेज़, बताया गया संबंध और आपकी पहचान पढ़कर मिलाए गए। यह अंक कागज़ात का है, आपका नहीं।')+'</p>'
+        +'<div class="rs-bar"><i id="medBar" style="width:'+v.score+'%"></i></div>'
+        +'<ul class="priority-checks">'+findings().map(f=>'<li class="'+f.kind+'">'+icon(f.kind)+'<div><b>'+f.title+'</b><p>'+e(f.text)+'</p></div></li>').join('')+'</ul></div></div></div>';
       if(v.band.key==='conditional')h+='<div class="priority-conditional"><p><b>'+t('This claim can still receive payment now.','इस दावे को अभी भुगतान मिल सकता है।')+'</b> '+t('The name on the medical document does not match your bank record. That difference does not hold up this payment. Correct it — or mark the correction in progress at the correction desk — within the next 10–15 days. If it is still unresolved by then, your next claim on this route may be held until it is fixed.','चिकित्सा दस्तावेज़ पर नाम आपके बैंक रिकॉर्ड से मेल नहीं खाता। इस अंतर से यह भुगतान नहीं रुकता। अगले 10–15 दिनों में सुधार करें, या सुधार डेस्क पर सुधार को प्रगति में दर्ज करें। तब तक हल न होने पर, इस रास्ते पर आपका अगला दावा रुक सकता है।')+'</p></div>';
       h+='<p>'+t('This checks only the two medical documents, the claimed relationship and identity match. Clinical urgency, document authenticity and claim eligibility still require appropriate review; this is not an approval or an EPFO payment decision.','यह जाँच केवल दो चिकित्सा दस्तावेज़ों, बताए गए संबंध और पहचान मेल तक सीमित है। चिकित्सा तात्कालिकता, दस्तावेज़ की असलियत और दावा पात्रता की उचित समीक्षा अब भी ज़रूरी है; यह मंज़ूरी या EPFO भुगतान निर्णय नहीं है।')+'</p></div>';
       h+='<div class="priority-actions"><button type="button" class="btn btn-primary" data-pr-action="prepare">'+t('Prepare priority review request','प्राथमिकता समीक्षा अनुरोध तैयार करें')+'</button>'+(v.band.key==='conditional'?'<button type="button" class="btn btn-secondary" data-pr-action="bank">'+t('Start the correction (10–15 days)','सुधार शुरू करें (10–15 दिन)')+'</button>':'')+'</div>';
     }
     return h;
+  }
+  const MED_C=540.4;
+  function medDialEls(){return {arc:document.getElementById('medArc'),num:document.getElementById('medScore'),bar:document.getElementById('medBar')};}
+  function paintMedDial(val){
+    const {arc,num,bar}=medDialEls(); if(!arc||!num) return;
+    arc.style.strokeDashoffset=MED_C*(1-val/100);
+    num.textContent=Math.round(val);
+    if(bar)bar.style.width=val+'%';
+  }
+  function medArcColour(){
+    const k=medicalScore().band.key;
+    return k==='clean'?'var(--success)':k==='conditional'?'var(--warning)':'var(--teal)';
+  }
+  function animateMedicalDial(){
+    const {arc}=medDialEls(); if(!arc) return;
+    arc.style.stroke=medArcColour();
+    const target=medicalScore().score;
+    // markup already carries the finished dial; only sweep when we can actually animate
+    if(document.hidden||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const dur=1100, t0=performance.now();
+    paintMedDial(0);
+    (function step(now){
+      const pr=Math.min(1,(now-t0)/dur);
+      paintMedDial(target*(1-Math.pow(1-pr,3)));
+      if(pr<1)requestAnimationFrame(step);
+    })(t0);
+    // rAF is throttled in background tabs, so guarantee the end state regardless
+    setTimeout(function(){paintMedDial(target);},dur+250);
   }
   function renderMedicalCheck(){
     const el=document.getElementById('ccMedicalCheck'),ccCheck=document.getElementById('ccCheck');
@@ -7408,7 +7467,11 @@ window.ccAddTranslations({
     const isMedical=state().route==='medical';
     ccCheck.classList.toggle('route-medical',isMedical);
     el.hidden=!isMedical;
-    if(isMedical)el.innerHTML=medicalCheckBody();
+    if(isMedical){
+      el.innerHTML=medicalCheckBody();
+      const st=state();
+      if(st.justScanned){st.justScanned=false;animateMedicalDial();}
+    }
   }
   function packet(){
     const s=state(),m=window.ccMember(),c=window.ccCurrentCase;
@@ -7460,7 +7523,7 @@ window.ccAddTranslations({
         },80);
         setTimeout(function(){
           clearInterval(iv);
-          const cur=state();cur.scanning=false;cur.checked=true;
+          const cur=state();cur.scanning=false;cur.checked=true;cur.justScanned=true;
           render();focus('.priority-result');
         },1400);
       }
@@ -7514,6 +7577,94 @@ window.ccAddTranslations({
 body.dark .resolve .btn-secondary{background:var(--surface-soft);color:var(--ink);border-color:var(--line-strong)}body.dark .resolve .resolve-back{color:#bba7ff}
 .profile-background{margin-top:24px;border-top:1px solid var(--line);padding-top:22px}.profile-background>summary{font-size:18px;font-weight:700;cursor:pointer;padding:8px 0}.profile-background #viewCauses{display:block!important;padding-top:20px}.profile-background .uc-intro{display:none}.profile-background .uc-grid{grid-template-columns:1fr}
 @media(max-width:760px){.resolve-grid{grid-template-columns:1fr;gap:18px}.resolve-work{padding:20px}.resolve-steps li{flex-direction:column;align-items:flex-start;font-size:12px;gap:6px}.resolve-steps li:after{display:none}.resolve dl>div{grid-template-columns:1fr;gap:4px}.resolve-summary dl>div{display:grid;grid-template-columns:1fr 1.2fr}.resolve-summary dd{margin:0}.resolve-actions .btn{flex:1 1 180px}}
+
+/* Sidebar brand doubles as the home link. */
+.sidebar .login-brand{display:flex;width:100%;border:0;background:none;color:inherit;font-family:inherit;font-size:inherit;line-height:inherit;text-align:left;cursor:pointer;border-radius:10px;transition:opacity .18s ease}
+.sidebar .login-brand:hover{opacity:.82}
+.sidebar .login-brand:focus-visible{outline:3px solid var(--teal);outline-offset:4px}
+@media(prefers-reduced-motion:reduce){.sidebar .login-brand{transition:none}}
+
+/* ---- dark mode repairs ---------------------------------------------------
+   Components below hardcoded light surfaces or var(--navy) text, neither of
+   which flips with the theme, so they went white-on-white or navy-on-navy. */
+body.dark .drawer,
+body.dark .receipt,
+body.dark .va-q,
+body.dark .fact,
+body.dark .scope-box,
+body.dark .cc-dl-btn,
+body.dark .btn-secondary,
+body.dark input:not([type=checkbox]):not([type=radio]),
+body.dark textarea,
+body.dark select{background:var(--surface)!important;color:var(--ink)!important;border-color:var(--line-strong)!important}
+body.dark .va-q::placeholder,
+body.dark input::placeholder,
+body.dark textarea::placeholder{color:var(--muted)!important}
+body.dark .owner,
+body.dark .cr-cell.owner,
+body.dark .step-number,
+body.dark .receipt-next{color:var(--ink)!important}
+body.dark .answer-line{color:#e8a765!important}
+body.dark .uc-flag.ok{color:#6ddba8!important}
+body.dark .up-tick{color:#0b2c1e!important}
+body.dark em{background:rgba(225,118,66,.16)!important;color:#f0b183!important}
+body.dark .va-mic{background:var(--surface)!important;color:var(--ink)!important;border-color:var(--line-strong)!important}
+
+/* Devi mic status line */
+.va-hint{padding:0 16px 8px;font-size:12px;color:var(--muted);line-height:1.5}
+body.dark .va-hint{color:var(--muted)}
+
+/* How Claimity works: the differentiator block */
+.diff-block{margin-top:18px;padding:16px 18px 6px;border-radius:14px;
+  background:rgba(201,87,50,.07);border:1px solid rgba(201,87,50,.22)}
+.diff-block h3{margin:0;color:var(--ink);font-size:13px;letter-spacing:-.2px}
+.diff-block>p{margin:5px 0 6px;color:var(--muted);font-size:11px;line-height:1.6}
+.diff-block .proof-block{border-bottom-color:rgba(201,87,50,.16)}
+.diff-block .proof-block:last-child{border-bottom:0}
+.diff-block .proof-block i{color:#fff;background:var(--teal)}
+body.dark .diff-block{background:rgba(225,118,66,.10);border-color:rgba(225,118,66,.26)}
+
+/* Help and grievances rail */
+.gr-rail{align-content:start}
+.gr-promise{margin:0;color:var(--muted);font-size:13.5px;line-height:1.65}
+.gr-ladder{list-style:none;margin:18px 0 2px;padding:0;counter-reset:rung}
+.gr-ladder li{position:relative;counter-increment:rung;padding:0 0 18px 34px}
+.gr-ladder li::before{content:counter(rung);position:absolute;left:0;top:0;
+  width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  font-size:11px;font-weight:700;color:var(--teal);
+  background:var(--teal-soft);border:1px solid var(--teal)}
+.gr-ladder li::after{content:"";position:absolute;left:11px;top:24px;bottom:2px;
+  width:1px;background:var(--line-strong)}
+.gr-ladder li:last-child{padding-bottom:0}
+.gr-ladder li:last-child::after{display:none}
+.gr-ladder b{display:block;color:var(--ink);font-size:13px;line-height:1.4}
+.gr-ladder small{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.6}
+.gr-record{margin:14px 0 0;display:grid;gap:10px}
+.gr-record>div{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  padding-bottom:10px;border-bottom:1px solid var(--line)}
+.gr-record>div:last-child{padding-bottom:0;border-bottom:0}
+.gr-record dt{color:var(--muted);font-size:13px}
+.gr-record dd{margin:0;color:var(--ink);font-size:14px;font-weight:700;
+  font-variant-numeric:tabular-nums}
+.gr-link{display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+  color:var(--teal);font-size:13px;font-weight:700;text-decoration:none;
+  border-bottom:1px solid transparent;transition:border-color .18s ease}
+.gr-link:hover{border-bottom-color:var(--teal)}
+.gr-link:focus-visible{outline:3px solid var(--teal);outline-offset:4px;border-radius:3px}
+.gr-link svg{width:15px;height:15px}
+
+/* Medical priority uses the same dial as the normal route */
+.med-rs{margin:18px 0 0;padding:22px}
+.med-rs .priority-checks{margin:0}
+.med-rs .rs-band{white-space:normal;max-width:210px;text-align:center;line-height:1.35}
+.med-rs .priority-checks li{animation:medIn .5s cubic-bezier(.22,.8,.2,1) backwards}
+.med-rs .priority-checks li:nth-child(1){animation-delay:.30s}
+.med-rs .priority-checks li:nth-child(2){animation-delay:.42s}
+.med-rs .priority-checks li:nth-child(3){animation-delay:.54s}
+.med-rs .priority-checks li:nth-child(4){animation-delay:.66s}
+@keyframes medIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@media(max-width:860px){.med-rs .rs-grid{grid-template-columns:1fr;gap:30px}}
+@media(prefers-reduced-motion:reduce){.med-rs .priority-checks li{animation:none}}
 </style>
 <script>
 /* Local receiving-system simulator. A response is not a verified correction.
