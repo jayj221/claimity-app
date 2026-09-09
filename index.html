@@ -4025,9 +4025,9 @@ body.dark .home-how{box-shadow:0 0 0 1px rgba(255,255,255,.1),0 12px 30px rgba(0
 (function () {
   'use strict';
   const members = {
-    missing: {name:'Aditi Sharma', initials:'AS', uan:'1002 8847 0400', dob:'14/03/1994', joined:'03 Jun 2019', employer:'ACME Textiles Pvt Ltd', establishment:'MH/BAN/0043217', memberId:'MHBAN***4500012', bank:'3391', ifsc:'SHBK0001234', aadhaar:'4471', pan:'ABCD*****F', phone:'0400', father:'RAJESH SHARMA', fatherProof:'RAJESH KUMAR SHARMA', bankName:'ADITI SHARMA', exit:'Not applicable, employed', balance:486320, ee:204254, er:204254, pension:77812, contribution:4525, pensionCredit:1842, interest:34180, nominees:[['Rajesh Kumar Sharma','Father',60],['Meena Sharma','Mother',40]], scanSummary:'1 record difference to review', scanNote:'Your father’s name differs across the sample records. This is separate from the missing claim receipt.', next:'Ask the EPFO claim desk to confirm receipt.', claimDate:'2026-08-29', grievance:'GRV-4471-B'},
-    blocked: {name:'Ramesh Kumar', initials:'RK', uan:'1003 7712 2816', dob:'22/11/1987', joined:'05 Apr 2016', employer:'StarBridge technologies', establishment:'PB/CHD/0062104', memberId:'PBCHD***6200018', bank:'6628', ifsc:'SHBK0002456', aadhaar:'5826', pan:'EFGH*****K', phone:'2816', father:'SURESH KUMAR', fatherProof:'SURESH KUMAR', bankName:'RAMESH KUMAR', exit:'Missing from service record', balance:624800, ee:268000, er:256800, pension:100000, contribution:4200, pensionCredit:1750, interest:28400, nominees:[['Sunita Kumar','Spouse',100]], scanSummary:'Date of exit needs confirmation', scanNote:'The sample identity and bank records agree. The missing date of exit is the first blocker; the older KYC remark is not another correction task.', next:'Request the exit-date correction from StarBridge technologies.', claimDate:'2026-08-08', grievance:'GRV-5826-R'},
-    paid: {name:'Meera Nair', initials:'MN', uan:'1004 6631 7952', dob:'09/08/1990', joined:'12 Jul 2018', employer:'Lotus Learning Services', establishment:'DL/CPM/0074102', memberId:'DLCPM***7400026', bank:'9054', ifsc:'SHBK0003678', aadhaar:'7139', pan:'JKLM*****N', phone:'7952', father:'RAGHAVAN NAIR', fatherProof:'RAGHAVAN NAIR', bankName:'MEERA NAIR', exit:'Not applicable, employed', balance:358640, ee:155000, er:145000, pension:58640, contribution:3600, pensionCredit:1500, interest:22100, nominees:[['Arjun Nair','Spouse',100]], scanSummary:'No differences in the checked records', scanNote:'The checked sample records agree. This does not confirm bank credit: the approved ₹24,890 still needs payment reconciliation.', next:'Trace the ₹24,890 payment to Sahaj Bank ending 9054.', claimDate:'2026-08-11', grievance:'GRV-7139-M'}
+    missing: {name:'Aditi Sharma', initials:'AS', uan:'1002 8847 0400', dob:'14/03/1994', joined:'03 Jun 2019', employer:'ACME Textiles Pvt Ltd', establishment:'MH/BAN/0043217', memberId:'MHBAN***4500012', bank:'3391', ifsc:'SHBK0001234', aadhaar:'4471', pan:'ABCD*****F', phone:'0400', father:'RAJESH SHARMA', fatherProof:'RAJESH KUMAR SHARMA', bankName:'ADITI SHARMA', exit:'Not applicable, employed', balance:486320, ee:204254, er:204254, pension:77812, contribution:4525, pensionCredit:1842, interest:34180, nominees:[['Rajesh Kumar Sharma','Father',60],['Meena Sharma','Mother',40]], scanSummary:'1 record difference to review', scanNote:'Your father’s name differs across the sample records. This is separate from the missing claim receipt.', next:'Ask the EPFO claim desk to confirm receipt.', claimDate:'2026-08-29', grievance:'GRV-4471-B', family:[['Rajesh Kumar Sharma','Father'],['Meena Sharma','Mother'],['Vikram Sharma','Spouse'],['Aarav Sharma','Son'],['Anaya Sharma','Daughter'],['Nikhil Sharma','Brother'],['Priya Sharma','Sister']]},
+    blocked: {name:'Ramesh Kumar', initials:'RK', uan:'1003 7712 2816', dob:'22/11/1987', joined:'05 Apr 2016', employer:'StarBridge technologies', establishment:'PB/CHD/0062104', memberId:'PBCHD***6200018', bank:'6628', ifsc:'SHBK0002456', aadhaar:'5826', pan:'EFGH*****K', phone:'2816', father:'SURESH KUMAR', fatherProof:'SURESH KUMAR', bankName:'RAMESH KUMAR', exit:'Missing from service record', balance:624800, ee:268000, er:256800, pension:100000, contribution:4200, pensionCredit:1750, interest:28400, nominees:[['Sunita Kumar','Spouse',100]], scanSummary:'Date of exit needs confirmation', scanNote:'The sample identity and bank records agree. The missing date of exit is the first blocker; the older KYC remark is not another correction task.', next:'Request the exit-date correction from StarBridge technologies.', claimDate:'2026-08-08', grievance:'GRV-5826-R', family:[['Sunita Kumar','Spouse'],['Suresh Kumar','Father'],['Kamla Kumar','Mother'],['Aditya Kumar','Son'],['Riya Kumar','Daughter'],['Manoj Kumar','Brother']]},
+    paid: {name:'Meera Nair', initials:'MN', uan:'1004 6631 7952', dob:'09/08/1990', joined:'12 Jul 2018', employer:'Lotus Learning Services', establishment:'DL/CPM/0074102', memberId:'DLCPM***7400026', bank:'9054', ifsc:'SHBK0003678', aadhaar:'7139', pan:'JKLM*****N', phone:'7952', father:'RAGHAVAN NAIR', fatherProof:'RAGHAVAN NAIR', bankName:'MEERA NAIR', exit:'Not applicable, employed', balance:358640, ee:155000, er:145000, pension:58640, contribution:3600, pensionCredit:1500, interest:22100, nominees:[['Arjun Nair','Spouse',100]], scanSummary:'No differences in the checked records', scanNote:'The checked sample records agree. This does not confirm bank credit: the approved ₹24,890 still needs payment reconciliation.', next:'Trace the ₹24,890 payment to Sahaj Bank ending 9054.', claimDate:'2026-08-11', grievance:'GRV-7139-M', family:[['Arjun Nair','Spouse'],['Raghavan Nair','Father'],['Lakshmi Nair','Mother'],['Kavya Nair','Daughter'],['Ananth Nair','Brother'],['Divya Nair','Sister']]}
   };
   // ponytail: correction state is in-memory only (resets on reload) so a fresh
   // take always starts from the uncorrected scan. It's intentionally not
@@ -7376,8 +7376,9 @@ window.ccAddTranslations({
   function state(){return states[window.ccWho]||(states[window.ccWho]={route:'normal',context:'admission',amount:25000,checked:false,prepared:false,overdue:false,relation:'self',docs:{admission:false,prescription:false},scanning:false,scanStart:0});}
   function target(){return {medical:1,normal:10}[state().route];}
   function icon(kind){return '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/>'+ (kind==='ok'?'<path d="m7 12 3 3 7-7"/>':'<path d="M12 7v6m0 3v1"/>')+'</svg>';}
-  function relationOptions(m){return [{value:'self',label:t('Self — '+m.name,'स्वयं — '+m.name)}].concat(m.nominees.map((n,i)=>({value:'nominee'+i,label:n[0]+' — '+t(n[1],n[1])})));}
-  function relationLabel(m){const s=state();if(s.relation==='self')return t('Self','स्वयं');const n=m.nominees[Number(String(s.relation).replace('nominee',''))];return n?n[0]+' ('+n[1]+')':t('Self','स्वयं');}
+  function famList(m){return m.family||m.nominees.map(n=>[n[0],n[1]]);}
+  function relationOptions(m){return [{value:'self',label:t('Self — '+m.name,'स्वयं — '+m.name)}].concat(famList(m).map((n,i)=>({value:'rel'+i,label:n[0]+' — '+t(n[1],n[1])})));}
+  function relationLabel(m){const s=state();if(s.relation==='self')return t('Self','स्वयं');const n=famList(m)[Number(String(s.relation).replace('rel',''))];return n?n[0]+' ('+n[1]+')':t('Self','स्वयं');}
   function docsReady(){const s=state();return !!(s.docs.admission&&s.docs.prescription);}
   function medicalScore(){
     const s=state(),m=window.ccMember(),limit=Math.min(m.ee,50000);
@@ -7411,22 +7412,24 @@ window.ccAddTranslations({
     const s=state(),m=window.ccMember();
     let h='<h3>'+t('Medical priority: two required documents','चिकित्सा प्राथमिकता: दो अनिवार्य दस्तावेज़')+'</h3><p>'+t('Synthetic records only. Do not upload real health or identity documents. AI reading and DigiLocker verification are simulated; the field comparison runs locally.','केवल काल्पनिक रिकॉर्ड। वास्तविक स्वास्थ्य या पहचान दस्तावेज़ अपलोड न करें। AI रीडिंग और DigiLocker सत्यापन सिमुलेटेड हैं; विवरणों की तुलना यहीं होती है।')+'</p>';
     h+='<div class="priority-fields"><div class="up-grid">'+slot('admission','Hospital admission slip','अस्पताल भर्ती पर्ची','Required','अनिवार्य')+slot('prescription','Doctor’s prescription','डॉक्टर की पर्ची','Required','अनिवार्य')+'</div>';
-    h+='<label for="priorityRelation">'+t('Relationship to patient','मरीज़ से संबंध')+'<select id="priorityRelation" data-pr-field="relation">'+relationOptions(m).map(o=>'<option value="'+o.value+'"'+(s.relation===o.value?' selected':'')+'>'+o.label+'</option>').join('')+'</select><small>'+t('Only relations already on your nominee record can be selected. Nobody outside your record can be claimed.','केवल आपके नामांकित रिकॉर्ड में मौजूद संबंध ही चुने जा सकते हैं। रिकॉर्ड से बाहर किसी का दावा नहीं किया जा सकता।')+'</small></label></div>';
-    if(s.scanning)h+='<div class="pf-top" style="margin-top:16px"><div style="display:flex;gap:10px;align-items:center"><span class="pf-timer is-run" id="medTimer">0.00s</span><button class="btn btn-primary" type="button" disabled>'+t('Scanning…','जाँच हो रही है…')+'</button></div></div>';
+    h+='<label for="priorityRelation">'+t('Relationship to patient','मरीज़ से संबंध')+'<select id="priorityRelation" data-pr-field="relation">'+relationOptions(m).map(o=>'<option value="'+o.value+'"'+(s.relation===o.value?' selected':'')+'>'+o.label+'</option>').join('')+'</select><small>'+t('Only relations already on your family record can be selected. Nobody outside your record can be claimed.','केवल आपके परिवार रिकॉर्ड में मौजूद संबंध ही चुने जा सकते हैं। रिकॉर्ड से बाहर किसी का दावा नहीं किया जा सकता।')+'</small></label></div>';
+    if(s.scanning)h+='<div class="priority-actions"><button class="btn btn-primary" type="button" disabled>'+t('Scanning…','जाँच हो रही है…')+'</button></div>';
     else h+='<div class="priority-actions"><button type="button" class="btn btn-primary" data-pr-action="check"'+(docsReady()?'':' disabled')+'>'+t('Run the check','जाँच करें')+'</button></div>';
     if(!docsReady()&&!s.scanning)h+='<p class="priority-error">'+t('Upload both the admission slip and the prescription to run the medical check.','चिकित्सा जाँच चलाने के लिए भर्ती पर्ची और डॉक्टर की पर्ची, दोनों अपलोड करें।')+' <button type="button" class="link-btn" data-pr-action="sample-docs">'+t('Use sample documents','नमूना दस्तावेज़ इस्तेमाल करें')+'</button></p>';
-    if(s.checked&&docsReady()){
+    if((s.checked||s.scanning)&&docsReady()){
       const v=medicalScore();
-      const bandCls=v.band.key==='clean'?'is-green':v.band.key==='conditional'?'is-yellow':'';
+      const scanning=!!s.scanning, shown=scanning?0:v.score, fs=findings();
+      const bandCls=scanning?'':(v.band.key==='clean'?'is-green':v.band.key==='conditional'?'is-yellow':'');
+      const arcCol=v.band.key==='clean'?'var(--success)':v.band.key==='conditional'?'var(--warning)':'var(--teal)';
       h+='<div class="priority-result" tabindex="-1" role="status"><div class="rs med-rs"><div class="rs-grid"><div class="rs-dial">'
-        +'<svg class="rs-ring" viewBox="0 0 200 200" aria-hidden="true"><circle class="rs-track" cx="100" cy="100" r="86"/><circle class="rs-arc" id="medArc" cx="100" cy="100" r="86" style="stroke-dashoffset:'+(MED_C*(1-v.score/100))+';stroke:'+(v.band.key==='clean'?'var(--success)':v.band.key==='conditional'?'var(--warning)':'var(--teal)')+'"/></svg>'
-        +'<div class="rs-num"><span id="medScore">'+v.score+'</span><small>/ 100</small></div>'
-        +'<div class="rs-band '+bandCls+'">'+v.band.label+'</div></div><div class="rs-side">'
+        +'<svg class="rs-ring" viewBox="0 0 200 200" aria-hidden="true"><circle class="rs-track" cx="100" cy="100" r="86"/><circle class="rs-arc" id="medArc" cx="100" cy="100" r="86" style="stroke-dashoffset:'+(MED_C*(1-shown/100))+';stroke:'+arcCol+'"/></svg>'
+        +'<div class="rs-num"><span id="medScore">'+shown+'</span><small>/ 100</small></div>'
+        +'<div class="rs-band '+bandCls+'" id="medBand">'+(scanning?t('Scanning…','जाँच हो रही है…'):v.band.label)+'</div></div><div class="rs-side">'
         +'<span class="rs-ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>'+t('AI reads the documents','AI दस्तावेज़ पढ़ता है')+'</span>'
-        +'<h3 class="rs-title">'+t('Claim-Scan \u00b7 medical priority','Claim-Scan \u00b7 चिकित्सा प्राथमिकता')+'</h3>'
+        +'<div class="med-head"><h3 class="rs-title" id="medTitle">'+(scanning?t('Claim-Scan \u00b7 reading your documents…','Claim-Scan \u00b7 दस्तावेज़ पढ़े जा रहे हैं…'):t('Claim-Scan \u00b7 medical priority','Claim-Scan \u00b7 चिकित्सा प्राथमिकता'))+'</h3><span class="pf-timer '+(scanning?'is-run':'is-done')+'" id="medTimer">'+(scanning?'0.00s':(s.scanTime||'0.00')+'s')+'</span></div>'
         +'<p class="rs-sub">'+t('Two medical documents, the claimed relationship and your identity, read and cross-checked. The score describes the paperwork, not you.','दो चिकित्सा दस्तावेज़, बताया गया संबंध और आपकी पहचान पढ़कर मिलाए गए। यह अंक कागज़ात का है, आपका नहीं।')+'</p>'
-        +'<div class="rs-bar"><i id="medBar" style="width:'+v.score+'%"></i></div>'
-        +'<ul class="priority-checks">'+findings().map(f=>'<li class="'+f.kind+'">'+icon(f.kind)+'<div><b>'+f.title+'</b><p>'+e(f.text)+'</p></div></li>').join('')+'</ul></div></div></div>';
+        +'<div class="rs-bar"><i id="medBar" style="width:'+shown+'%"></i></div>'
+        +'<ul class="rs-checks" id="medChecks">'+fs.map(f=>'<li'+(scanning?'':' class="'+(f.kind==='ok'?'is-done':'is-flag')+'"')+'><span></span><b>'+f.title+'</b><small>'+e(f.text)+'</small></li>').join('')+'</ul></div></div></div>';
       if(v.band.key==='conditional')h+='<div class="priority-conditional"><p><b>'+t('This claim can still receive payment now.','इस दावे को अभी भुगतान मिल सकता है।')+'</b> '+t('The name on the medical document does not match your bank record. That difference does not hold up this payment. Correct it — or mark the correction in progress at the correction desk — within the next 10–15 days. If it is still unresolved by then, your next claim on this route may be held until it is fixed.','चिकित्सा दस्तावेज़ पर नाम आपके बैंक रिकॉर्ड से मेल नहीं खाता। इस अंतर से यह भुगतान नहीं रुकता। अगले 10–15 दिनों में सुधार करें, या सुधार डेस्क पर सुधार को प्रगति में दर्ज करें। तब तक हल न होने पर, इस रास्ते पर आपका अगला दावा रुक सकता है।')+'</p></div>';
       h+='<p>'+t('This checks only the two medical documents, the claimed relationship and identity match. Clinical urgency, document authenticity and claim eligibility still require appropriate review; this is not an approval or an EPFO payment decision.','यह जाँच केवल दो चिकित्सा दस्तावेज़ों, बताए गए संबंध और पहचान मेल तक सीमित है। चिकित्सा तात्कालिकता, दस्तावेज़ की असलियत और दावा पात्रता की उचित समीक्षा अब भी ज़रूरी है; यह मंज़ूरी या EPFO भुगतान निर्णय नहीं है।')+'</p></div>';
       h+='<div class="priority-actions"><button type="button" class="btn btn-primary" data-pr-action="prepare">'+t('Prepare priority review request','प्राथमिकता समीक्षा अनुरोध तैयार करें')+'</button>'+(v.band.key==='conditional'?'<button type="button" class="btn btn-secondary" data-pr-action="bank">'+t('Start the correction (10–15 days)','सुधार शुरू करें (10–15 दिन)')+'</button>':'')+'</div>';
@@ -7434,6 +7437,7 @@ window.ccAddTranslations({
     return h;
   }
   const MED_C=540.4;
+  let medRun=0;
   function medDialEls(){return {arc:document.getElementById('medArc'),num:document.getElementById('medScore'),bar:document.getElementById('medBar')};}
   function paintMedDial(val){
     const {arc,num,bar}=medDialEls(); if(!arc||!num) return;
@@ -7516,16 +7520,30 @@ window.ccAddTranslations({
       if(action==='sample-docs'){s.docs.admission=true;s.docs.prescription=true;render();focus('[data-pr-action="check"]');}
       if(action==='check'){
         s.scanning=true;s.scanStart=performance.now();s.checked=false;s.prepared=false;render();
+        const version=++medRun, STEP=700;
+        const lis=Array.prototype.slice.call(document.querySelectorAll('#medChecks li'));
+        const fs=findings();
         const iv=setInterval(function(){
-          const cur=state();if(!cur.scanning){clearInterval(iv);return;}
-          const el=document.getElementById('medTimer');
+          if(medRun!==version){clearInterval(iv);return;}
+          const cur=state(),el=document.getElementById('medTimer');
           if(el)el.textContent=((performance.now()-cur.scanStart)/1000).toFixed(2)+'s';
         },80);
+        // each row spins, then resolves to a tick or a flag, same cadence as the normal route
+        lis.forEach(function(li,i){
+          setTimeout(function(){if(medRun===version)li.className='is-run';},i*STEP);
+          setTimeout(function(){
+            if(medRun!==version)return;
+            li.className=(fs[i]&&fs[i].kind!=='ok')?'is-flag':'is-done';
+          },i*STEP+STEP-160);
+        });
         setTimeout(function(){
           clearInterval(iv);
-          const cur=state();cur.scanning=false;cur.checked=true;cur.justScanned=true;
+          if(medRun!==version)return;
+          const cur=state();
+          cur.scanTime=((performance.now()-cur.scanStart)/1000).toFixed(2);
+          cur.scanning=false;cur.checked=true;cur.justScanned=true;
           render();focus('.priority-result');
-        },1400);
+        },lis.length*STEP+140);
       }
       if(action==='prepare'){s.prepared=true;s.overdue=false;s.due=Date.now()+target()*86400000;render();focus('.priority-request');}
       if(action==='overdue'){s.overdue=true;render();focus('.priority-request');}
@@ -7655,16 +7673,11 @@ body.dark .diff-block{background:rgba(225,118,66,.10);border-color:rgba(225,118,
 
 /* Medical priority uses the same dial as the normal route */
 .med-rs{margin:18px 0 0;padding:22px}
-.med-rs .priority-checks{margin:0}
 .med-rs .rs-band{white-space:normal;max-width:210px;text-align:center;line-height:1.35}
-.med-rs .priority-checks li{animation:medIn .5s cubic-bezier(.22,.8,.2,1) backwards}
-.med-rs .priority-checks li:nth-child(1){animation-delay:.30s}
-.med-rs .priority-checks li:nth-child(2){animation-delay:.42s}
-.med-rs .priority-checks li:nth-child(3){animation-delay:.54s}
-.med-rs .priority-checks li:nth-child(4){animation-delay:.66s}
-@keyframes medIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.med-rs .med-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:8px}
+.med-rs .med-head .rs-title{margin:0}
+.med-rs .rs-checks li small{line-height:1.6}
 @media(max-width:860px){.med-rs .rs-grid{grid-template-columns:1fr;gap:30px}}
-@media(prefers-reduced-motion:reduce){.med-rs .priority-checks li{animation:none}}
 </style>
 <script>
 /* Local receiving-system simulator. A response is not a verified correction.
